@@ -1,27 +1,37 @@
-# ZestioxNg
+# Zestiox Angular Project Setup Guide
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 16.2.16.
+## Prerequisites
+- Install **Node.js v18.10.0** from [nodejs.org](https://nodejs.org/download/release/v18.10.0/)
+- Install **Git** from [git-scm.com](https://git-scm.com/downloads)
+- Install **Visual Studio Code** from [code.visualstudio.com](https://code.visualstudio.com/)
 
-## Development server
+## Clone the Repository
+ - Open command prompt in a convenient folder.
+ - Run below commands.
+```sh
+git clone https://github.com/jjchandru/zestiox-ng.git
+cd zestiox-ng
+```
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+## Open in Visual Studio Code
+ - Run below command in command prompt to open visual studio code in the angular project folder.
+```sh
+code .
+```
 
-## Code scaffolding
+## Install Dependencies
+- Open terminal in Visual Studio Code (Menu > View > Terminal) and run below command.
+```sh
+npm install
+```
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Switch to a Feature Branch
+ - Run below command in terminal to switch to your feature branch.
+```sh
+git checkout <feature-branch-name>
+```
+Replace `<feature-branch-name>` with the branch you want to work on.
 
-## Build
+---
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+For further help, refer to the Angular CLI documentation: https://angular.io/cli
