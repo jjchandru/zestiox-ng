@@ -37,7 +37,14 @@ npm install -g @angular/cli@16.2.16
 git checkout <feature-branch-name>
 ```
 Replace `<feature-branch-name>` with the branch you want to work on.
+---
 
+## Run the Angular App
+ - Command to run the angular app.
+```sh
+ng serve
+```
+Replace `<feature-branch-name>` with the branch you want to work on.
 ---
 
 For further help, refer to the Angular CLI documentation: https://angular.io/cli
