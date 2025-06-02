@@ -44,7 +44,5 @@ Replace `<feature-branch-name>` with the branch you want to work on.
 ```sh
 ng serve
 ```
-Replace `<feature-branch-name>` with the branch you want to work on.
----
 
 For further help, refer to the Angular CLI documentation: https://angular.io/cli
