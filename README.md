@@ -25,6 +25,12 @@ code .
 npm install
 ```
 
+## Install Angular
+- Run below command in terminal to install Angular.
+```sh
+npm install -g @angular/cli@16.2.16
+```
+
 ## Switch to a Feature Branch
  - Run below command in terminal to switch to your feature branch.
 ```sh
