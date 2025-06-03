@@ -21,6 +21,32 @@ export class MenuComponent {
     { name: 'Tandoori Roti', price: 30 },
     { name: 'Lachha Paratha', price: 55 },
   ];
+  mainCourse = [
+    { name: 'Paneer Butter Masala', price: 220 },
+    { name: 'Chicken Curry', price: 260 },
+    { name: 'Dal Makhani', price: 180 },
+    { name: 'Kadai Veg', price: 200 },
+  ];
 
+  riceNoodles = [
+    { name: 'Veg Fried Rice', price: 120 },
+    { name: 'Chicken Biryani', price: 180 },
+    { name: 'Hakka Noodles', price: 140 },
+    { name: 'Jeera Rice', price: 90 },
+  ];
 
-}
+  desserts = [
+    { name: 'Gulab Jamun', price: 60 },
+    { name: 'Rasmalai', price: 80 },
+    { name: 'Ice Cream', price: 70 },
+    { name: 'Gajar Halwa', price: 90 },
+  ];
+  
+ beverages = [
+  { name: 'Masala Chai', price: 40 },
+  { name: 'Coffee', price: 50 },
+  { name: 'Lassi', price: 60 },
+  { name: 'Soft Drink', price: 30 },
+];
+
+} 
