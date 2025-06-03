@@ -23,7 +23,56 @@
       </span>
     </div>
   </div>
+
+  <!-- Main Course -->
+  <div class="menu-section">
+    <h2>Main Course</h2>
+    <div *ngFor="let item of mainCourse" class="menu-item">
+      <span>{{ item.name }}</span>
+      <span>
+        ₹{{ item.price }}
+        <button aria-label="Add to cart"><i class="bi bi-plus"></i></button>
+      </span>
+    </div>
+  </div>
+
+  <!-- Rice & Noodles -->
+  <div class="menu-section">
+    <h2>Rice & Noodles</h2>
+    <div *ngFor="let item of riceNoodles" class="menu-item">
+      <span>{{ item.name }}</span>
+      <span>
+        ₹{{ item.price }}
+        <button aria-label="Add to cart"><i class="bi bi-plus"></i></button>
+      </span>
+    </div>
+  </div>
+
+  <!-- Desserts -->
+  <div class="menu-section">
+    <h2>Desserts</h2>
+    <div *ngFor="let item of desserts" class="menu-item">
+      <span>{{ item.name }}</span>
+      <span>
+        ₹{{ item.price }}
+        <button aria-label="Add to cart"><i class="bi bi-plus"></i></button>
+      </span>
+    </div>
+  </div>
+
+  <!-- Beverages -->
+  <div class="menu-section">
+    <h2>Beverages</h2>
+    <div *ngFor="let item of beverages" class="menu-item">
+      <span>{{ item.name }}</span>
+      <span>
+        ₹{{ item.price }}
+        <button aria-label="Add to cart"><i class="bi bi-plus"></i></button>
+      </span>
+    </div>
+  </div>
 </div>
+<!-- ...existing code... -->
 
 <!-- Bottom Navigation (Mobile Only) -->
 <nav class="bottom-nav">
