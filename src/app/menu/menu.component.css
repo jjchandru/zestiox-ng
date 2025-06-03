@@ -24,16 +24,22 @@
 }
 
 /* Menu section */
+/* ...existing code... */
 .menu-container {
   display: flex;
-  justify-content: center;
-  gap: 5rem;
-  padding: 2rem;
   flex-wrap: wrap;
+  justify-content: center;
+  gap: 2rem;
+  padding: 2rem;
 }
+
 .menu-section {
-  width: 220px;
+  flex: 1 1 300px; /* Grow, shrink, basis */
+  max-width: 300px;
+  min-width: 250px;
+  box-sizing: border-box;
 }
+/* ...existing code... */
 .menu-item {
   display: flex;
   justify-content: space-between;
