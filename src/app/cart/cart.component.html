@@ -1,1 +1,70 @@
-<h2>Your Cart</h2>
+<div class="container py-4">
+  <div class="row">
+    <div class="col-12">
+      <h2 class="fw-bold mb-4" style="font-size: 1.7rem;">Your Cart</h2>
+      <div class="table-responsive">
+        <table class="table align-middle mb-0" style="min-width: 500px;">
+          <thead>
+            <tr>
+              <th class="fw-semibold" style="font-size: 1rem;">Item</th>
+              <th class="fw-semibold" style="font-size: 1rem;">Qty</th>
+              <th class="fw-semibold" style="font-size: 1rem;">Price</th>
+              <th class="fw-semibold" style="font-size: 1rem;">Total</th>
+              <th style="width: 40px;"></th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="font-size: 1rem;">Paneer Tikka</td>
+              <td>
+                <div class="input-group input-group-sm justify-content-center" style="width: 90px;">
+                  <button class="btn btn-outline-secondary px-2 py-0" type="button" style="font-size: 1rem; line-height: 1;">
+                    <i class="bi bi-dash"></i>
+                  </button>
+                  <input type="text" class="form-control text-center px-1" value="2" readonly style="font-size: 1rem; background: #fff;">
+                  <button class="btn btn-outline-secondary px-2 py-0" type="button" style="font-size: 1rem; line-height: 1;">
+                    <i class="bi bi-plus"></i>
+                  </button>
+                </div>
+              </td>
+              <td style="font-size: 1rem;">₹180</td>
+              <td class="fw-semibold" style="font-size: 1rem; color: #000;">₹360</td>
+              <td>
+                <button class="btn btn-link text-danger p-0" title="Remove">
+                  <i class="bi bi-trash" style="font-size: 1.2rem;"></i>
+                </button>
+              </td>
+            </tr>
+            <tr>
+              <td style="font-size: 1rem;">Butter Naan</td>
+              <td>
+                <div class="input-group input-group-sm justify-content-center" style="width: 90px;">
+                  <button class="btn btn-outline-secondary px-2 py-0" type="button" style="font-size: 1rem; line-height: 1;">
+                    <i class="bi bi-dash"></i>
+                  </button>
+                  <input type="text" class="form-control text-center px-1" value="3" readonly style="font-size: 1rem; background: #fff;">
+                  <button class="btn btn-outline-secondary px-2 py-0" type="button" style="font-size: 1rem; line-height: 1;">
+                    <i class="bi bi-plus"></i>
+                  </button>
+                </div>
+              </td>
+              <td style="font-size: 1rem;">₹50</td>
+              <td class="fw-semibold" style="font-size: 1rem; color: #000;">₹150</td>
+              <td>
+                <button class="btn btn-link text-danger p-0" title="Remove">
+                  <i class="bi bi-trash" style="font-size: 1.2rem;"></i>
+                </button>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <div class="d-flex justify-content-end mt-4">
+        <div style="min-width: 260px; text-align: right;">
+          <h4 class="fw-bold mb-3" style="font-size: 1.3rem;">Grand Total: <span class="fw-bold">₹510</span></h4>
+          <button class="btn btn-primary px-4 py-2 fw-semibold" style="font-size: 1.1rem;">Place Order</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
