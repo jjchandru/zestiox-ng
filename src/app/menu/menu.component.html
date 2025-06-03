@@ -1,1 +1,53 @@
 <h2>Menu</h2>
+<!-- Top Navigation (Desktop Only) -->
+<nav class="top-nav">
+  <div class="logo">Zestiox</div>
+</nav>
+
+<!-- Menu Section -->
+<div class="menu-container">
+  <!-- Starters -->
+  <div class="menu-section">
+    <h2>Starters</h2>
+    <div *ngFor="let item of starters" class="menu-item">
+      <span>{{ item.name }}</span>
+      <span>
+        ₹{{ item.price }}
+        <button aria-label="Add to cart">+</button>
+      </span>
+    </div>
+  </div>
+
+  <!-- Indian Breads -->
+  <div class="menu-section">
+    <h2>Indian Breads</h2>
+    <div *ngFor="let item of breads" class="menu-item">
+      <span>{{ item.name }}</span>
+      <span>
+        ₹{{ item.price }}
+        <button aria-label="Add to cart">+</button>
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="bottom-nav">
+  <div>
+    <span class="material-icons">restaurant_menu</span>
+    <span>Menu</span>
+  </div>
+  <div>
+    <span class="material-icons">shopping_cart</span>
+    Cart <span class="cart-count">12</span>
+  </div>
+  <div>
+    <span class="material-icons">receipt_long</span>
+    <span>Orders</span>
+  </div>
+  <div>
+    <span class="material-icons">person</span>
+    <span>Profile</span>
+  </div>
+</nav>
+
