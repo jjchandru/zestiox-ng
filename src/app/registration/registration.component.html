@@ -1,1 +1,35 @@
-<h2>User Registration</h2>
+  <main class="container my-5">
+    <h2 class="mb-4">Register</h2>
+    <form>
+      <div class="row g-3">
+        <div class="col-md-6">
+          <label class="form-label">Name</label>
+          <input type="text" class="form-control" />
+          <div class="error-text">Name is required</div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Mobile</label>
+          <input type="text" class="form-control" />
+          <div class="error-text">Mobile number is required and must be 10 digits</div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Password</label>
+          <input type="password" class="form-control" />
+          <div class="error-text">
+            Password is required and must be at least 8 characters, contain one lowercase, one uppercase, one number, and one special character
+          </div>
+        </div>
+        <div class="col-md-6">
+          <label class="form-label">Confirm Password</label>
+          <input type="password" class="form-control" />
+          <div class="error-text">Confirm Password is required and must match the password</div>
+        </div>
+      </div>
+
+      <div class="mt-4 success-box">
+        ✅ Registration successful. Try <strong><a href="login.html" class="text-decoration-none">login</a></strong>.
+      </div>
+
+      <button class="btn btn-primary mt-3" type="submit">Register</button>
+    </form>
+  </main>
