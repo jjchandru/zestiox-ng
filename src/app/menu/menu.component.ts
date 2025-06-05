@@ -1,52 +1,67 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+
+interface MenuItem {
+  id?: number;
+  name: string;
+  price: number;
+}
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
-  starters = [
-    { name: 'Paneer Tikka', price: 180 },
-    { name: 'Veg Manchurian', price: 160 },
-    { name: 'Gobi 65', price: 150 },
-    { name: 'Chicken 65', price: 200 },
-    { name: 'Tandoori Chicken', price: 250 },
-  ];
+export class MenuComponent implements OnInit {
+  starters: MenuItem[] = [];
+  breads: MenuItem[] = [];
+  mainCourse: MenuItem[] = [];
+  riceNoodles: MenuItem[] = [];
+  desserts: MenuItem[] = [];
+  beverages: MenuItem[] = [];
+  cartCount = 0;
 
-  breads = [
-    { name: 'Plain Naan', price: 40 },
-    { name: 'Butter Naan', price: 50 },
-    { name: 'Garlic Naan', price: 60 },
-    { name: 'Tandoori Roti', price: 30 },
-    { name: 'Lachha Paratha', price: 55 },
-  ];
-  mainCourse = [
-    { name: 'Paneer Butter Masala', price: 220 },
-    { name: 'Chicken Curry', price: 260 },
-    { name: 'Dal Makhani', price: 180 },
-    { name: 'Kadai Veg', price: 200 },
-  ];
+  constructor(private http: HttpClient) {}
 
-  riceNoodles = [
-    { name: 'Veg Fried Rice', price: 120 },
-    { name: 'Chicken Biryani', price: 180 },
-    { name: 'Hakka Noodles', price: 140 },
-    { name: 'Jeera Rice', price: 90 },
-  ];
+  ngOnInit() {
+    this.http.get<any>('assets/menu.json').subscribe(data => {
+      this.starters = data['Starters'] || [];
+      this.breads = data['Indian Breads'] || [];
+      this.mainCourse = data['Main Course'] || [];
+      this.riceNoodles = data['Rice & Biryani'] || [];
+      this.desserts = data['Desserts'] || [];
+      this.beverages = data['Beverages'] || [];
+    });
+    this.getCartCount(); // Optionally fetch initial cart count
+  }
 
-  desserts = [
-    { name: 'Gulab Jamun', price: 60 },
-    { name: 'Rasmalai', price: 80 },
-    { name: 'Ice Cream', price: 70 },
-    { name: 'Gajar Halwa', price: 90 },
-  ];
-  
- beverages = [
-  { name: 'Masala Chai', price: 40 },
-  { name: 'Coffee', price: 50 },
-  { name: 'Lassi', price: 60 },
-  { name: 'Soft Drink', price: 30 },
-];
+  addToCart(item: MenuItem) {
+    const payload = {
+      user_id: 1, // Replace with actual user id if available
+      menu_item_id: item.id,
+      quantity: 1
+    };
+    this.http.post<any>(`${environment.apiUrl}/cart/add`, payload).subscribe({
+      next: response => {
+        this.getCartCount(); // Fetch the real cart count from backend after adding
+      },
+      error: err => {
+        // Optionally show a user-friendly error message
+        alert('Failed to add to cart. Please try again.');
+      }
+    });
+  }
 
-} 
+  getCartCount() {
+    this.http.get<any>(`${environment.apiUrl}/cart/count?user_id=1`).subscribe({
+      next: res => {
+        this.cartCount = res.count;
+      },
+      error: err => {
+        // Optionally handle error
+        this.cartCount = 0;
+      }
+    });
+  }
+}
