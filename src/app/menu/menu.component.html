@@ -7,9 +7,10 @@
       <span>{{ item.name }}</span>
       <span>
         ₹{{ item.price }}
-        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart">
-          <i class="bi bi-plus"></i>
-        </button>
+        
+        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart" (click)="addToCart(item)">
+  <i class="bi bi-plus"></i>
+</button>
       </span>
     </div>
   </div>
@@ -21,7 +22,7 @@
       <span>{{ item.name }}</span>
       <span>
         ₹{{ item.price }}
-        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart">
+        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart" (click)="addToCart(item)">
           <i class="bi bi-plus"></i>
         </button>
       </span>
@@ -35,7 +36,7 @@
       <span>{{ item.name }}</span>
       <span>
         ₹{{ item.price }}
-        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart">
+        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart" (click)="addToCart(item)">
           <i class="bi bi-plus"></i>
         </button>
       </span>
@@ -49,7 +50,7 @@
       <span>{{ item.name }}</span>
       <span>
         ₹{{ item.price }}
-        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart">
+        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart" (click)="addToCart(item)">
           <i class="bi bi-plus"></i>
         </button>
       </span>
@@ -63,9 +64,9 @@
       <span>{{ item.name }}</span>
       <span>
         ₹{{ item.price }}
-        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart">
-          <i class="bi bi-plus"></i>
-        </button>
+        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart" (click)="addToCart(item)">
+  <i class="bi bi-plus"></i>
+</button>
       </span>
     </div>
   </div>
@@ -77,9 +78,9 @@
       <span>{{ item.name }}</span>
       <span>
         ₹{{ item.price }}
-        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart">
-          <i class="bi bi-plus"></i>
-        </button>
+        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart" (click)="addToCart(item)">
+  <i class="bi bi-plus"></i>
+</button>
       </span>
     </div>
   </div>
@@ -93,7 +94,7 @@
   </div>
   <div>
     <span class="material-icons">shopping_cart</span>
-    Cart <span class="cart-count">12</span>
+    Cart <span class="cart-count">{{ cartCount }}</span>
   </div>
   <div>
     <span class="material-icons">receipt_long</span>

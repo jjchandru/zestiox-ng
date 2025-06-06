@@ -1,0 +1,289 @@
+{
+  "Beverages": [
+    {
+      "id": 51,
+      "name": "Chai",
+      "price": 30
+    },
+    {
+      "id": 52,
+      "name": "Lassi",
+      "price": 50
+    },
+    {
+      "id": 53,
+      "name": "Sweet Lime Juice",
+      "price": 60
+    },
+    {
+      "id": 54,
+      "name": "Cold Coffee",
+      "price": 70
+    },
+    {
+      "id": 55,
+      "name": "Buttermilk",
+      "price": 40
+    }
+  ],
+  "Desserts": [
+    {
+      "id": 41,
+      "name": "Gulab Jamun",
+      "price": 60
+    },
+    {
+      "id": 42,
+      "name": "Rasgulla",
+      "price": 60
+    },
+    {
+      "id": 43,
+      "name": "Kheer",
+      "price": 70
+    },
+    {
+      "id": 44,
+      "name": "Jalebi",
+      "price": 50
+    },
+    {
+      "id": 45,
+      "name": "Ice Cream",
+      "price": 80
+    },
+    {
+      "id": 46,
+      "name": "Rasmalai",
+      "price": 90
+    },
+    {
+      "id": 47,
+      "name": "Gajar Halwa",
+      "price": 85
+    },
+    {
+      "id": 48,
+      "name": "Kulfi",
+      "price": 70
+    },
+    {
+      "id": 49,
+      "name": "Mysore Pak",
+      "price": 75
+    },
+    {
+      "id": 50,
+      "name": "Ladoo",
+      "price": 55
+    }
+  ],
+  "Indian Breads": [
+    {
+      "id": 11,
+      "name": "Butter Naan",
+      "price": 40
+    },
+    {
+      "id": 12,
+      "name": "Garlic Naan",
+      "price": 50
+    },
+    {
+      "id": 13,
+      "name": "Tandoori Roti",
+      "price": 25
+    },
+    {
+      "id": 14,
+      "name": "Lachha Paratha",
+      "price": 45
+    },
+    {
+      "id": 15,
+      "name": "Missi Roti",
+      "price": 30
+    },
+    {
+      "id": 16,
+      "name": "Stuffed Kulcha",
+      "price": 60
+    },
+    {
+      "id": 17,
+      "name": "Roomali Roti",
+      "price": 35
+    },
+    {
+      "id": 18,
+      "name": "Plain Naan",
+      "price": 35
+    },
+    {
+      "id": 19,
+      "name": "Cheese Naan",
+      "price": 70
+    },
+    {
+      "id": 20,
+      "name": "Onion Kulcha",
+      "price": 55
+    }
+  ],
+  "Main Course": [
+    {
+      "id": 21,
+      "name": "Paneer Butter Masala",
+      "price": 220
+    },
+    {
+      "id": 22,
+      "name": "Dal Makhani",
+      "price": 180
+    },
+    {
+      "id": 23,
+      "name": "Chicken Curry",
+      "price": 250
+    },
+    {
+      "id": 24,
+      "name": "Mutton Rogan Josh",
+      "price": 320
+    },
+    {
+      "id": 25,
+      "name": "Chole Masala",
+      "price": 160
+    },
+    {
+      "id": 26,
+      "name": "Bhindi Masala",
+      "price": 150
+    },
+    {
+      "id": 27,
+      "name": "Kadai Paneer",
+      "price": 210
+    },
+    {
+      "id": 28,
+      "name": "Egg Curry",
+      "price": 170
+    },
+    {
+      "id": 29,
+      "name": "Aloo Gobi",
+      "price": 140
+    },
+    {
+      "id": 30,
+      "name": "Palak Paneer",
+      "price": 200
+    }
+  ],
+  "Rice & Biryani": [
+    {
+      "id": 31,
+      "name": "Veg Biryani",
+      "price": 180
+    },
+    {
+      "id": 32,
+      "name": "Chicken Biryani",
+      "price": 240
+    },
+    {
+      "id": 33,
+      "name": "Mutton Biryani",
+      "price": 320
+    },
+    {
+      "id": 34,
+      "name": "Jeera Rice",
+      "price": 90
+    },
+    {
+      "id": 35,
+      "name": "Peas Pulao",
+      "price": 110
+    },
+    {
+      "id": 36,
+      "name": "Curd Rice",
+      "price": 80
+    },
+    {
+      "id": 37,
+      "name": "Fried Rice",
+      "price": 120
+    },
+    {
+      "id": 38,
+      "name": "Egg Fried Rice",
+      "price": 140
+    },
+    {
+      "id": 39,
+      "name": "Lemon Rice",
+      "price": 100
+    },
+    {
+      "id": 40,
+      "name": "Ghee Rice",
+      "price": 110
+    }
+  ],
+  "Starters": [
+    {
+      "id": 1,
+      "name": "Paneer Tikka",
+      "price": 180
+    },
+    {
+      "id": 2,
+      "name": "Chicken Tikka",
+      "price": 220
+    },
+    {
+      "id": 3,
+      "name": "Veg Spring Roll",
+      "price": 150
+    },
+    {
+      "id": 4,
+      "name": "Hara Bhara Kebab",
+      "price": 160
+    },
+    {
+      "id": 5,
+      "name": "Gobi Manchurian",
+      "price": 140
+    },
+    {
+      "id": 6,
+      "name": "Samosa",
+      "price": 40
+    },
+    {
+      "id": 7,
+      "name": "Aloo Tikki",
+      "price": 50
+    },
+    {
+      "id": 8,
+      "name": "Fish Amritsari",
+      "price": 250
+    },
+    {
+      "id": 9,
+      "name": "Tandoori Mushroom",
+      "price": 170
+    },
+    {
+      "id": 10,
+      "name": "Chilli Paneer",
+      "price": 180
+    }
+  ]
+}
