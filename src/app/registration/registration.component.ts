@@ -1,53 +1,75 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { RegistrationService } from './registration.service';
+import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registration',
   templateUrl: './registration.component.html',
   styleUrls: ['./registration.component.css']
 })
-export class RegistrationComponent {
-  registrationForm: FormGroup;
+export class RegistrationComponent implements OnInit {
+  registerForm!: FormGroup;
   submitted = false;
-  successMessage = '';
-  errorMessage = '';
+  apiError: string | null = null;
+  apiValidationDetails: any = null;
+  registrationSuccess = false;
 
-  constructor(private fb: FormBuilder, private regService: RegistrationService) {
-    this.registrationForm = this.fb.group({
-      name: ['', Validators.required],
+  constructor(
+    private fb: FormBuilder,
+    private http: HttpClient,
+    private router: Router
+  ) {}
+
+  ngOnInit(): void {
+    this.registerForm = this.fb.group({
+      name: ['', [Validators.required]],
       mobile: ['', [Validators.required, Validators.pattern(/^\d{10}$/)]],
-      password: ['', [Validators.required, Validators.minLength(8),
-        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*()_+\-=[\]{};':"\\|,.<>/?]).+$/)
+      password: ['', [
+        Validators.required,
+        Validators.minLength(8),
+        Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[^A-Za-z\d]).{8,}$/)
       ]],
-      confirm_password: ['', Validators.required]
-    }, { validators: this.passwordsMatchValidator });
+      confirmPassword: ['', [Validators.required]]
+    }, { validator: this.passwordsMatchValidator });
   }
 
   passwordsMatchValidator(form: FormGroup) {
-    return form.get('password')!.value === form.get('confirm_password')!.value ? null : { mismatch: true };
+    const password = form.get('password')?.value;
+    const confirmPassword = form.get('confirmPassword')?.value;
+    return password === confirmPassword ? null : { passwordMismatch: true };
   }
 
-  get f() { return this.registrationForm.controls; }
+  get f() { return this.registerForm.controls; }
+
+  onBlur(field: string) {
+    this.registerForm.get(field)?.markAsTouched();
+  }
+
+  onInput(field: string) {
+    this.apiError = null;
+    this.apiValidationDetails = null;
+    this.registerForm.get(field)?.updateValueAndValidity();
+  }
 
   onSubmit() {
     this.submitted = true;
-    this.successMessage = '';
-    this.errorMessage = '';
-    if (this.registrationForm.invalid) return;
-    const { name, mobile, password, confirm_password } = this.registrationForm.value;
-    this.regService.register({ name, mobile, password, confirm_password }).subscribe({
+    this.apiError = null;
+    this.apiValidationDetails = null;
+    if (this.registerForm.invalid) return;
+    const { name, mobile, password } = this.registerForm.value;
+    this.http.post<any>('/register', { name, mobile, password }).subscribe({
       next: (res) => {
-        if (res.success) {
-          this.successMessage = res.message;
-          this.registrationForm.reset();
-          this.submitted = false;
-        } else {
-          this.errorMessage = res.message;
-        }
+        this.registrationSuccess = true;
+        setTimeout(() => this.router.navigate(['/login']), 1500);
       },
       error: (err) => {
-        this.errorMessage = err.error?.message || 'Registration failed. Try again.';
+        if (err.status === 400 && err.error) {
+          this.apiError = err.error.error || 'Invalid input';
+          this.apiValidationDetails = err.error.details || null;
+        } else {
+          this.apiError = 'An unexpected error occurred.';
+        }
       }
     });
   }
