@@ -1,6 +1,0 @@
-C:\Users\HEMA>curl -X POST http://localhost:5000/cart/add ^
-More?   -H "Content-Type: application/json" ^
-More?   -d "{\"user_id\":1,\"menu_item_id\":2,\"quantity\":3}"
-{
-  "message": "Item added to cart"
-}

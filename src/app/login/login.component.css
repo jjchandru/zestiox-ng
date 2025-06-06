@@ -1,0 +1,76 @@
+/* Error message styling */
+.error-text {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 4px;
+}
+
+/* Error alert box (red background with icon) */
+.error-box {
+  background-color: #f8d7da;
+  color: #842029;
+  border: 1px solid #f5c2c7;
+  padding: 10px 15px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  font-size: 0.9rem;
+}
+
+/* Button styling */
+button.btn-primary {
+  background-color: #0d6efd;
+  border-color: #0d6efd;
+  font-weight: 500;
+}
+
+/* Register link styling */
+a.text-decoration-underline {
+  text-decoration: underline !important;
+  color: #0d6efd;
+  font-weight: 500;
+}
+
+/* Mobile bottom navigation bar */
+.mobile-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #212529;
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  padding: 0.5rem 0;
+  border-top: 1px solid #444;
+  z-index: 1000;
+}
+
+/* Mobile nav links */
+.mobile-nav a {
+  color: white;
+  font-size: 0.8rem;
+  text-decoration: none;
+  text-align: center;
+  flex-grow: 1;
+}
+
+/* Mobile nav icons */
+.mobile-nav svg {
+  display: block;
+  margin: auto;
+  margin-bottom: 4px;
+}
+
+/* Hide mobile nav on larger screens */
+@media (min-width: 576px) {
+  .mobile-nav {
+    display: none;
+  }
+}
+
+/* Optional spacing for inputs and bottom area */
+form .form-control {
+  padding: 10px;
+  font-size: 0.95rem;
+}

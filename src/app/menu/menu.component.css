@@ -99,6 +99,17 @@
     align-items: center;
     padding-bottom: 4rem; /* space for bottom nav */
   }
+  .menu-row {
+    flex-direction: column;
+    gap: 0;
+    width: 100%;
+    align-items: stretch;
+  }
+  .menu-section {
+    max-width: 100%;
+    min-width: 0;
+    margin-bottom: 2rem;
+  }
   .bottom-nav {
     display: flex;
   }

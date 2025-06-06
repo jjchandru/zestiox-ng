@@ -16,7 +16,11 @@ interface MenuItem {
 export class MenuComponent implements OnInit {
   categoryOrder: { id: number, name: string, items: MenuItem[] }[] = [];
   menuData: { [key: string]: MenuItem[] } = {};
+  user: any = null;
+
+  // Cart count
   cartCount = 0;
+
 
   // Message for item added
   itemAddedMessage = '';
@@ -26,15 +30,30 @@ export class MenuComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
+    // Load user info from localStorage FIRST
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      this.user = JSON.parse(userData);
+    }
+    // Now fetch menu items
     this.http.get<any>(`${environment.apiUrl}/menu-items`).subscribe(data => {
-      this.categoryOrder = data; // Now an array of categories
+      console.log('Menu API response:', data); // Debug log
+      // Try to assign correctly based on response structure
+      if (Array.isArray(data)) {
+        this.categoryOrder = data;
+      } else if (data && Array.isArray(data.categories)) {
+        this.categoryOrder = data.categories;
+      } else {
+        this.categoryOrder = [];
+      }
     });
-    this.getCartCount(); // Optionally fetch initial cart count
+    // Now fetch cart count (user is set)
+    this.getCartCount();
   }
 
   addToCart(item: MenuItem) {
     const payload = {
-      user_id: 1, // Replace with actual user id if available
+      user_id: this.user?.id, // Use actual user id
       menu_item_id: item.id,
       quantity: 1
     };
@@ -52,19 +71,17 @@ export class MenuComponent implements OnInit {
         }, 1500);
       },
       error: err => {
-        // Optionally show a user-friendly error message
         alert('Failed to add to cart. Please try again.');
       }
     });
   }
 
   getCartCount() {
-    this.http.get<any>(`${environment.apiUrl}/cart/count?user_id=1`).subscribe({
+    this.http.get<any>(`${environment.apiUrl}/cart/count?user_id=${this.user?.id || ''}`).subscribe({
       next: res => {
         this.cartCount = res.count;
       },
       error: err => {
-        // Optionally handle error
         this.cartCount = 0;
       }
     });
