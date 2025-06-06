@@ -21,7 +21,7 @@ export class ProfileComponent implements OnInit {
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
-    this.http.get<User>('http://127.0.0.1:5000/users/2').subscribe({
+    this.http.get<User>('http://127.0.0.1:5000/users/1').subscribe({
       next: (data) => {
         this.user = data;
         this.loading = false;
