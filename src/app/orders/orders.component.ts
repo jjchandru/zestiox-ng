@@ -20,7 +20,7 @@ export class OrdersComponent implements OnInit {
 
   fetchOrders(): void {
     this.loading = true;
-    this.http.get<any[]>('http://localhost:5000/orders/2').subscribe({
+    this.http.get<any[]>('http://localhost:5000/orders/1').subscribe({
       next: (data) => {
         this.orders = data;
         this.loading = false;
@@ -37,7 +37,7 @@ export class OrdersComponent implements OnInit {
   }
 
   cancelOrder(orderId: number): void {
-    this.http.post(`http://localhost:5000/orders/${orderId}/cansel`, {}).subscribe({
+    this.http.post(`http://localhost:5000/orders/cancel/${orderId}`, {}).subscribe({
       next: () => {
         // Refresh orders after cancellation
         this.fetchOrders();
