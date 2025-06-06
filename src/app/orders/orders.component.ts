@@ -11,11 +11,18 @@ export class OrdersComponent implements OnInit {
   orders: any[] = [];
   loading = true;
   error = '';
+  user: any = null;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit(): void {
+     const userData = localStorage.getItem('user');
+    if (userData) {
+      this.user = JSON.parse(userData);
+      console.log(this.user.id)   
+    }
     this.fetchOrders();
+    
   }
 
   fetchOrders(): void {
