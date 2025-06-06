@@ -1,35 +1,49 @@
-  <main class="container my-5">
+<main class="container my-5">
     <h2 class="mb-4">Register</h2>
-    <form>
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()" novalidate>
       <div class="row g-3">
         <div class="col-md-6">
           <label class="form-label">Name</label>
-          <input type="text" class="form-control" />
-          <div class="error-text">Name is required</div>
+          <input type="text" class="form-control" formControlName="name" (blur)="onBlur('name')" (input)="onInput('name')" />
+          <div class="error-text" *ngIf="(f['name'].touched || submitted) && f['name'].errors">
+            Name is required
+          </div>
         </div>
         <div class="col-md-6">
           <label class="form-label">Mobile</label>
-          <input type="text" class="form-control" />
-          <div class="error-text">Mobile number is required and must be 10 digits</div>
+          <input type="text" class="form-control" formControlName="mobile" (blur)="onBlur('mobile')" (input)="onInput('mobile')" />
+          <div class="error-text" *ngIf="(f['mobile'].touched || submitted) && f['mobile'].errors">
+            <span *ngIf="f['mobile'].errors['required']">Mobile number is required</span>
+            <span *ngIf="f['mobile'].errors['pattern']">Mobile number must be 10 digits</span>
+          </div>
         </div>
         <div class="col-md-6">
           <label class="form-label">Password</label>
-          <input type="password" class="form-control" />
-          <div class="error-text">
-            Password is required and must be at least 8 characters, contain one lowercase, one uppercase, one number, and one special character
+          <input type="password" class="form-control" formControlName="password" (blur)="onBlur('password')" (input)="onInput('password')" />
+          <div class="error-text" *ngIf="(f['password'].touched || submitted) && f['password'].errors">
+            <span *ngIf="f['password'].errors['required']">Password is required</span>
+            <span *ngIf="f['password'].errors['minlength']">Password must be at least 8 characters</span>
+            <span *ngIf="f['password'].errors['pattern']">Password must contain one lowercase, one uppercase, one number, and one special character</span>
           </div>
         </div>
         <div class="col-md-6">
           <label class="form-label">Confirm Password</label>
-          <input type="password" class="form-control" />
-          <div class="error-text">Confirm Password is required and must match the password</div>
+          <input type="password" class="form-control" formControlName="confirmPassword" (blur)="onBlur('confirmPassword')" (input)="onInput('confirmPassword')" />
+          <div class="error-text" *ngIf="(f['confirmPassword'].touched || submitted) && (f['confirmPassword'].errors || registerForm.errors && registerForm.errors['passwordMismatch'])">
+            <span *ngIf="f['confirmPassword'].errors && f['confirmPassword'].errors['required']">Confirm Password is required</span>
+            <span *ngIf="registerForm.errors && registerForm.errors['passwordMismatch']">Passwords do not match</span>
+          </div>
         </div>
       </div>
 
-      <div class="mt-4 success-box">
-        ✅ Registration successful. Try <strong><a href="login.html" class="text-decoration-none">login</a></strong>.
+      <div class="mt-4 error-text" *ngIf="apiError && !registrationSuccess">
+        {{ apiError }}
       </div>
 
-      <button class="btn btn-primary mt-3" type="submit">Register</button>
+      <div class="mt-4 success-box" *ngIf="registrationSuccess">
+        ✅ Registration successful. Try <strong>login</strong>.
+      </div>
+
+      <button class="btn btn-primary mt-3" type="submit" [disabled]="registrationSuccess">Register</button>
     </form>
   </main>
