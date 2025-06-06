@@ -14,24 +14,15 @@ interface MenuItem {
   styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-  starters: MenuItem[] = [];
-  breads: MenuItem[] = [];
-  mainCourse: MenuItem[] = [];
-  riceNoodles: MenuItem[] = [];
-  desserts: MenuItem[] = [];
-  beverages: MenuItem[] = [];
+  categoryOrder: { id: number, name: string, items: MenuItem[] }[] = [];
+  menuData: { [key: string]: MenuItem[] } = {};
   cartCount = 0;
 
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
-    this.http.get<any>('assets/menu.json').subscribe(data => {
-      this.starters = data['Starters'] || [];
-      this.breads = data['Indian Breads'] || [];
-      this.mainCourse = data['Main Course'] || [];
-      this.riceNoodles = data['Rice & Biryani'] || [];
-      this.desserts = data['Desserts'] || [];
-      this.beverages = data['Beverages'] || [];
+    this.http.get<any>(`${environment.apiUrl}/menu-items`).subscribe(data => {
+      this.categoryOrder = data; // Now an array of categories
     });
     this.getCartCount(); // Optionally fetch initial cart count
   }
@@ -63,5 +54,27 @@ export class MenuComponent implements OnInit {
         this.cartCount = 0;
       }
     });
+  }
+
+  // Helper to split categories into rows of n
+  getCategoryRows(categories: any[], perRow: number): any[][] {
+    const rows = [];
+    for (let i = 0; i < categories.length; i += perRow) {
+      const row = categories.slice(i, i + perRow);
+      while (row.length < perRow) {
+        row.push(null); // pad with nulls for alignment
+      }
+      rows.push(row);
+    }
+    return rows;
+  }
+
+  // Helper to split categories into columns for vertical fill (column-major order)
+  getCategoryColumns(categories: any[], perCol: number): any[][] {
+    const columns: any[][] = Array.from({ length: perCol }, () => []);
+    categories.forEach((cat, idx) => {
+      columns[idx % perCol].push(cat);
+    });
+    return columns;
   }
 }
