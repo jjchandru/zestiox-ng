@@ -1,1 +1,107 @@
-<h2>Menu</h2>
+<!-- Menu Section -->
+<div class="menu-container">
+  <!-- Starters -->
+  <div class="menu-section">
+    <h2>Starters</h2>
+    <div *ngFor="let item of starters" class="menu-item">
+      <span>{{ item.name }}</span>
+      <span>
+        ₹{{ item.price }}
+        
+        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart" (click)="addToCart(item)">
+  <i class="bi bi-plus"></i>
+</button>
+      </span>
+    </div>
+  </div>
+
+  <!-- Indian Breads -->
+  <div class="menu-section">
+    <h2>Indian Breads</h2>
+    <div *ngFor="let item of breads" class="menu-item">
+      <span>{{ item.name }}</span>
+      <span>
+        ₹{{ item.price }}
+        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart" (click)="addToCart(item)">
+          <i class="bi bi-plus"></i>
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <!-- Main Course -->
+  <div class="menu-section">
+    <h2>Main Course</h2>
+    <div *ngFor="let item of mainCourse" class="menu-item">
+      <span>{{ item.name }}</span>
+      <span>
+        ₹{{ item.price }}
+        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart" (click)="addToCart(item)">
+          <i class="bi bi-plus"></i>
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <!-- Rice & Noodles -->
+  <div class="menu-section">
+    <h2>Rice & Noodles</h2>
+    <div *ngFor="let item of riceNoodles" class="menu-item">
+      <span>{{ item.name }}</span>
+      <span>
+        ₹{{ item.price }}
+        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart" (click)="addToCart(item)">
+          <i class="bi bi-plus"></i>
+        </button>
+      </span>
+    </div>
+  </div>
+
+  <!-- Desserts -->
+  <div class="menu-section">
+    <h2>Desserts</h2>
+    <div *ngFor="let item of desserts" class="menu-item">
+      <span>{{ item.name }}</span>
+      <span>
+        ₹{{ item.price }}
+        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart" (click)="addToCart(item)">
+  <i class="bi bi-plus"></i>
+</button>
+      </span>
+    </div>
+  </div>
+
+  <!-- Beverages -->
+  <div class="menu-section">
+    <h2>Beverages</h2>
+    <div *ngFor="let item of beverages" class="menu-item">
+      <span>{{ item.name }}</span>
+      <span>
+        ₹{{ item.price }}
+        <button type="button" class="btn btn-sm btn-outline-secondary add-to-cart-icon p-0 px-2" title="Add to cart" (click)="addToCart(item)">
+  <i class="bi bi-plus"></i>
+</button>
+      </span>
+    </div>
+  </div>
+</div>
+
+<!-- Bottom Navigation (Mobile Only) -->
+<nav class="bottom-nav">
+  <div>
+    <span class="material-icons">restaurant_menu</span>
+    <span>Menu</span>
+  </div>
+  <div>
+    <span class="material-icons">shopping_cart</span>
+    Cart <span class="cart-count">{{ cartCount }}</span>
+  </div>
+  <div>
+    <span class="material-icons">receipt_long</span>
+    <span>Orders</span>
+  </div>
+  <div>
+    <span class="material-icons">person</span>
+    <span>Profile</span>
+  </div>
+</nav>

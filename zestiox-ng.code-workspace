@@ -1,0 +1,11 @@
+{
+	"folders": [
+		{
+			"path": "."
+		},
+		{
+			"path": "../zestiox-backend-py"
+		}
+	],
+	"settings": {}
+}

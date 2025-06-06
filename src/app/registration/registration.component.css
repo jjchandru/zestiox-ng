@@ -34,6 +34,7 @@
   color: white;
 }
 
+/* Responsive Rule */
 @media (min-width: 768px) {
   .nav-bottom {
     display: none;
