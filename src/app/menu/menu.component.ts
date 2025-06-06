@@ -1,11 +1,21 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
+export class MenuComponent implements OnInit {
+  user: any = null;
+
+  ngOnInit() {
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      this.user = JSON.parse(userData);
+      console.log(this.user.id)   
+    }
+  }
+
   starters = [
     { name: 'Paneer Tikka', price: 180 },
     { name: 'Veg Manchurian', price: 160 },
@@ -49,4 +59,4 @@ export class MenuComponent {
   { name: 'Soft Drink', price: 30 },
 ];
 
-} 
+}
