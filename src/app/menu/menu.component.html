@@ -1,3 +1,8 @@
+<!-- Item Added Message -->
+<div *ngIf="showItemAdded" class="item-added-message">
+  {{ itemAddedMessage }}
+</div>
+
 <!-- Menu Section -->
 <div class="menu-container">
   <ng-container *ngFor="let row of getCategoryRows(categoryOrder, 3)">

@@ -18,6 +18,11 @@ export class MenuComponent implements OnInit {
   menuData: { [key: string]: MenuItem[] } = {};
   cartCount = 0;
 
+  // Message for item added
+  itemAddedMessage = '';
+  showItemAdded = false;
+  itemAddedTimeout: any;
+
   constructor(private http: HttpClient) {}
 
   ngOnInit() {
@@ -36,6 +41,15 @@ export class MenuComponent implements OnInit {
     this.http.post<any>(`${environment.apiUrl}/cart/add`, payload).subscribe({
       next: response => {
         this.getCartCount(); // Fetch the real cart count from backend after adding
+        // Show item added message
+        this.itemAddedMessage = `${item.name} added`;
+        this.showItemAdded = true;
+        if (this.itemAddedTimeout) {
+          clearTimeout(this.itemAddedTimeout);
+        }
+        this.itemAddedTimeout = setTimeout(() => {
+          this.showItemAdded = false;
+        }, 1500);
       },
       error: err => {
         // Optionally show a user-friendly error message
