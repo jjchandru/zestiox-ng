@@ -61,7 +61,7 @@ export class RegistrationComponent implements OnInit {
     this.http.post<any>('/register', { name, mobile, password }).subscribe({
       next: (res) => {
         this.registrationSuccess = true;
-        setTimeout(() => this.router.navigate(['/login']), 1500);
+        // Do not redirect automatically. Show login button instead.
       },
       error: (err) => {
         if (err.status === 400 && err.error) {
@@ -72,5 +72,9 @@ export class RegistrationComponent implements OnInit {
         }
       }
     });
+  }
+
+  onLoginClick() {
+    this.router.navigate(['/login']);
   }
 }

@@ -41,7 +41,8 @@
       </div>
 
       <div class="mt-4 success-box" *ngIf="registrationSuccess">
-        ✅ Registration successful. Try <strong>login</strong>.
+        ✅ Registration successful.<br>
+        <button class="btn btn-success mt-2" (click)="onLoginClick()">Go to Login</button>
       </div>
 
       <button class="btn btn-primary mt-3" type="submit" [disabled]="registrationSuccess">Register</button>
