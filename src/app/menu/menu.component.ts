@@ -1,52 +1,111 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../../environments/environment';
+
+interface MenuItem {
+  id?: number;
+  name: string;
+  price: number;
+}
 
 @Component({
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css']
 })
-export class MenuComponent {
-  starters = [
-    { name: 'Paneer Tikka', price: 180 },
-    { name: 'Veg Manchurian', price: 160 },
-    { name: 'Gobi 65', price: 150 },
-    { name: 'Chicken 65', price: 200 },
-    { name: 'Tandoori Chicken', price: 250 },
-  ];
+export class MenuComponent implements OnInit {
+  categoryOrder: { id: number, name: string, items: MenuItem[] }[] = [];
+  menuData: { [key: string]: MenuItem[] } = {};
+  user: any = null;
 
-  breads = [
-    { name: 'Plain Naan', price: 40 },
-    { name: 'Butter Naan', price: 50 },
-    { name: 'Garlic Naan', price: 60 },
-    { name: 'Tandoori Roti', price: 30 },
-    { name: 'Lachha Paratha', price: 55 },
-  ];
-  mainCourse = [
-    { name: 'Paneer Butter Masala', price: 220 },
-    { name: 'Chicken Curry', price: 260 },
-    { name: 'Dal Makhani', price: 180 },
-    { name: 'Kadai Veg', price: 200 },
-  ];
+  // Cart count
+  cartCount = 0;
 
-  riceNoodles = [
-    { name: 'Veg Fried Rice', price: 120 },
-    { name: 'Chicken Biryani', price: 180 },
-    { name: 'Hakka Noodles', price: 140 },
-    { name: 'Jeera Rice', price: 90 },
-  ];
 
-  desserts = [
-    { name: 'Gulab Jamun', price: 60 },
-    { name: 'Rasmalai', price: 80 },
-    { name: 'Ice Cream', price: 70 },
-    { name: 'Gajar Halwa', price: 90 },
-  ];
-  
- beverages = [
-  { name: 'Masala Chai', price: 40 },
-  { name: 'Coffee', price: 50 },
-  { name: 'Lassi', price: 60 },
-  { name: 'Soft Drink', price: 30 },
-];
+  // Message for item added
+  itemAddedMessage = '';
+  showItemAdded = false;
+  itemAddedTimeout: any;
 
-} 
+  constructor(private http: HttpClient) {}
+
+  ngOnInit() {
+    // Load user info from localStorage FIRST
+    const userData = localStorage.getItem('user');
+    if (userData) {
+      this.user = JSON.parse(userData);
+    }
+    // Now fetch menu items
+    this.http.get<any>(`${environment.apiUrl}/menu-items`).subscribe(data => {
+      console.log('Menu API response:', data); // Debug log
+      // Try to assign correctly based on response structure
+      if (Array.isArray(data)) {
+        this.categoryOrder = data;
+      } else if (data && Array.isArray(data.categories)) {
+        this.categoryOrder = data.categories;
+      } else {
+        this.categoryOrder = [];
+      }
+    });
+    // Now fetch cart count (user is set)
+    this.getCartCount();
+  }
+
+  addToCart(item: MenuItem) {
+    const payload = {
+      user_id: this.user?.id, // Use actual user id
+      menu_item_id: item.id,
+      quantity: 1
+    };
+    this.http.post<any>(`${environment.apiUrl}/cart/add`, payload).subscribe({
+      next: response => {
+        this.getCartCount(); // Fetch the real cart count from backend after adding
+        // Show item added message
+        this.itemAddedMessage = `${item.name} added`;
+        this.showItemAdded = true;
+        if (this.itemAddedTimeout) {
+          clearTimeout(this.itemAddedTimeout);
+        }
+        this.itemAddedTimeout = setTimeout(() => {
+          this.showItemAdded = false;
+        }, 1500);
+      },
+      error: err => {
+        alert('Failed to add to cart. Please try again.');
+      }
+    });
+  }
+
+  getCartCount() {
+    this.http.get<any>(`${environment.apiUrl}/cart/count?user_id=${this.user?.id || ''}`).subscribe({
+      next: res => {
+        this.cartCount = res.count;
+      },
+      error: err => {
+        this.cartCount = 0;
+      }
+    });
+  }
+
+  // Helper to split categories into rows of n
+  getCategoryRows(categories: any[], perRow: number): any[][] {
+    const rows = [];
+    for (let i = 0; i < categories.length; i += perRow) {
+      const row = categories.slice(i, i + perRow);
+      while (row.length < perRow) {
+        row.push(null); // pad with nulls for alignment
+      }
+      rows.push(row);
+    }
+    return rows;
+  }
+
+  // Helper to split categories into columns for vertical fill (column-major order)
+  getCategoryColumns(categories: any[], perCol: number): any[][] {
+    const columns: any[][] = Array.from({ length: perCol }, () => []);
+    categories.forEach((cat, idx) => {
+      columns[idx % perCol].push(cat);
+    });
+    return columns;
+  }
+}
